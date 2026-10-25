@@ -16,5 +16,8 @@ func main() {
 	value := serv.GetValueSer()
 
 	fmt.Println(value)
+	fmt.Println(value)
+	fmt.Println(value)
+	fmt.Println(value)
 
 }
