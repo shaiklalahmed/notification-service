@@ -20,4 +20,8 @@ func main() {
 	fmt.Println(value)
 	fmt.Println(value)
 
+	fmt.Println(value)
+	fmt.Println(value)
+	fmt.Println(value)
+
 }
