@@ -19,3 +19,5 @@ func NewServiceLayer[T int | string](db database.DB[T]) Service[T] {
 func (s Service[T]) GetValueSer() []T {
 	return s.db.GetValue()
 }
+
+//testin phase
