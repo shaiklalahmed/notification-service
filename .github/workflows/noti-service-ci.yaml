@@ -1,0 +1,8 @@
+name: 'noti-service: CI'
+run-name: 'Build: ${{ github.ref_name }} by @s{{ github.actor }}'
+
+on:
+  push:
+    branches:
+      - main
+      - dev
