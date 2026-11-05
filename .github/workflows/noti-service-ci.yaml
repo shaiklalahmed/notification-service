@@ -1,5 +1,5 @@
 name: 'noti-service: CI'
-run-name: 'Build: ${{ github.ref_name }} by @${{ github.actor }}'
+run-name: 'Build: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }} by @${{ github.actor }}'
 
 on:
   push:
