@@ -1,8 +1,48 @@
 name: 'noti-service: CI'
-run-name: 'Build: ${{ github.ref_name }} by @s{{ github.actor }}'
+run-name: "Build: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref_name }} by @${{ github.actor }}"
 
 on:
   push:
     branches:
       - main
       - dev
+  
+  pull_request:
+    branches:
+      - main
+      - dev
+  
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: noti-service-build
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Setup Go version from go.mod
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+          cache: true
+
+      # 3. Download dependencies
+      - name: Download dependencies
+        run: go mod download
+
+      # 5. Static analysis
+      - name: Run Go Vet
+        run: go vet ./...
+
+      # 6. Run unit tests
+      - name: Run tests
+        run: go test -v ./...
+
+      # 7. Build application
+      - name: Build application
+        run: go build ./...
